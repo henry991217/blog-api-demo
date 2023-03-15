@@ -19,7 +19,7 @@ public class ArticleController {
      * @param pageParams
      * @return
      */
-@Autowired
+    @Autowired
     ArticleService service;
 
     @PostMapping
