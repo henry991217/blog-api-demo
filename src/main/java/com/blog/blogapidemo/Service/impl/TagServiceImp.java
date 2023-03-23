@@ -10,8 +10,11 @@ import com.blog.blogapidemo.Vo.TagVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
+import java.text.CollationElementIterator;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -44,9 +47,22 @@ public class TagServiceImp implements TagService {
         return copyList(tags);
     }
 
+
+    /**
+     * 根据标签所拥有文章数量排列取前limit个
+     * @param limit
+     * @return
+     */
     @Override
-    public Result hots(int i) {
-        return null;
+    public Result hots(int limit) {
+
+        List<Long> TagIds = tagMapper.findHotsTagIds(limit);
+        if(CollectionUtils.isEmpty(TagIds)){
+            return  Result.success(Collections.emptyList());
+        }
+        List<Tag> tagsByTagIds = tagMapper.findTagsByTagIds(TagIds);
+
+        return Result.success(tagsByTagIds);
     }
 
 }

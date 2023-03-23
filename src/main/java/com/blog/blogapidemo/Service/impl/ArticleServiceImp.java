@@ -25,6 +25,8 @@ public class ArticleServiceImp implements ArticleService {
     //展示文章列表
     @Autowired
     ArticleMapper articleMapper;
+
+
     @Override
     public Result listArticle(PageParams pageParams) {
         Page<Article> page=new Page<>(pageParams.getPage(), pageParams.getPageSize());
@@ -59,4 +61,6 @@ public class ArticleServiceImp implements ArticleService {
         articleVo.setCreateDate(new DateTime(article.getCreateDate()).toString("yyyy-MM-dd HH:mm"));
         return articleVo;
     }
+
+
 }

@@ -17,14 +17,11 @@ public class TagsController {
     TagService tagService;
 
     @GetMapping("hot")
-public Result hot()
-    {
-        int limit=6;
+    public Result hot() {
+        int limit = 6;
         return tagService.hots(6);
 
     }
-
-
 
 
 }

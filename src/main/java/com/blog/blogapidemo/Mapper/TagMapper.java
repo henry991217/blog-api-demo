@@ -14,14 +14,14 @@ public interface TagMapper extends BaseMapper<Tag> {
      * @return
      */
     List<Tag> findTagsByArticleId(Long articleId);
-//动态sql
+//多表查询sql
     /**
      * 查询最热的标签 前n条
      * @param limit
      * @return
      */
     List<Long> findHotsTagIds(int limit);
-    //动态sql
+    //mybatis
     List<Tag> findTagsByTagIds(List<Long> tagIds);
-    //动态sql
+    //mybatis
 }
