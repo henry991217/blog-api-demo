@@ -13,19 +13,28 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("articles")
 public class ArticleController {
 
+
+    @Autowired
+    ArticleService articleService;
+
     /**
      * 文章列表
-     *
      * @param pageParams
-     * @return
+     * @return 返回文章列表
      */
-    @Autowired
-    ArticleService service;
-
     @PostMapping
     public Result listArticle(@RequestBody PageParams pageParams) {
-        return service.listArticle(pageParams);
+        return articleService.listArticle(pageParams);
     }
 
-
+    /**
+     * 最热文章
+     * @return 返回右侧最热文章，按降序排列
+     */
+    @PostMapping("hot")
+    public Result hotArticle()
+    {
+        int limit=5;
+        return articleService.hotArticle(limit);
+    }
 }

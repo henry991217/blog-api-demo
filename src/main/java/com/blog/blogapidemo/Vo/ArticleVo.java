@@ -24,7 +24,7 @@ public class ArticleVo {
      */
     private String createDate;
 
-    private UserVo author;
+    private String author;
 
     private ArticleBodyVo body;
 
