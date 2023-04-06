@@ -52,13 +52,14 @@ public class ArticleServiceImp implements ArticleService {
     @Override
     public Result hotArticle(int limit) {
         LambdaQueryWrapper<Article> queryWrapper=new LambdaQueryWrapper<>();
-        queryWrapper.orderByDesc(Article::getViewCounts);
+        queryWrapper.orderByDesc(Article::getViewCounts);//获取查询
         queryWrapper.select(Article::getId, Article::getTitle);
         queryWrapper.last("limit "+limit);
         List<Article> articles = articleMapper.selectList(queryWrapper);
         return Result.success(copyList(articles,false,false));
     }
 
+//    最热文章查询
     private List<ArticleVo> copyList(List<Article> records, boolean isAuthor, boolean isTag) {
 
         List<ArticleVo> articleVoList= new ArrayList<>();
